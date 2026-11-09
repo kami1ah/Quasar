@@ -1,0 +1,17 @@
+
+#middle {
+clip-path: inset(0 50% 0 0);
+}
+
+footer{
+    display: block;
+    position: fixed;
+    align-items: center;
+
+}
+#about{
+    text-align: center;
+}
+#contact{
+    text-align: center;
+}
