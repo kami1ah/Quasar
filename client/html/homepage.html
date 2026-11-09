@@ -4,39 +4,95 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+    <link rel="stylesheet" href="../css/homepage.css">
     <title>Homepage</title>
 </head>
 <body>
-    <nav>
-
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./homepage.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Games
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./gameoftheday.html">Game of the day</a></li>
+                            <li><a class="dropdown-item" href="./historicalfigures.html">Historical figures</a></li>
+                            <li><a class="dropdown-item" href="./historicalmonuments.html"> Historical Monuments</a></li>
+                            <li><a class="dropdown-item" href="./geography.html">Geography</a></li>
+                            <li><a class="dropdown-item" href="./randomgame.html">Random game</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
+
     <section>
-
-
+        <div class="text" class="card text-bg-light mb-3">
+            <b class="card-title" >What do you want to play today</b>
+        </div>
     </section>
-    <b>What do you want to play today</b>
+
     <main>
-        <section id="categories">
-            <a href="./gameoftheday.html">Game of the day</a>
-            <a href="./historicalfigures.html">Historical figures</a>
-            <a href="./historicalmonuments.html"> Historical Monuments</a>
-            <a href="./geography.html">Geography</a>
-            <a href="./randomgame.html">Random game</a>
+        <div class="container text-center">
+            <div class="row align-items-center">
+
+        <section id="categories" class="col" class="card">
+            <ul id="categories-list" class="card-title">
+                <li><a href="./gameoftheday.html">Game of the day</a></li>
+                <li><a href="./historicalfigures.html">Historical figures</a></li>
+                <li><a href="./historicalmonuments.html"> Historical Monuments</a></li>
+                <li><a href="./geography.html">Geography</a></li>
+                <li><a href="./randomgame.html">Random game</a></li>
+            </ul>
         </section>
 
-        <section id="image">
+        <section id="image" class="col" class="opacity-50" class="card">
             <img src="../assets/Nikola_Tesla.jpeg" alt="Image of Nikola Tesla ">
         </section>
 
         <section id="leaderboard">
-            <li id="playernames">
+            <div class="card">
+                <h3 class="card-header">Leaderboard</h3>
+                <ol id="playersnames" class="card-text">
+                    <li>Player 1 - 92927</li>
+                    <li>Player 2 - 39332</li>
+                    <li>Player 3 - 39332</li>
+                    <li>Player 4 - 39332</li>
+                    <li>Player 5 - 39332</li>
+                    <li>Player 6 - 39332</li>
+                    <li>Player 7 - 39332</li>
+                    <li>Player 8 - 39332</li>
+                    <li>Player 9 - 39332</li>
+                    <li>Player 10 - 39332</li>
+                    <li>Player 11 - 39332</li>
+                    <li>Player 12 - 39332</li>
+                </ol>
+            </div>
 
-            </li>
         </section>
+            </div>
+        </div>
     </main>
     
+    <footer class="card text-bg-light mb-3">
+        <p id="about" class="fw-bold">About</p>
+        <p class="fw-lighter">This is the about us section</p>
+        <p id="contactUs" class="fw-bold">Contact Us</p>
+            <p class="fw-lighter">Name</p>
+            <p class="fw-lighter">Email</p>
+            <p class="fw-lighter">Github Repository Link</p>
+    </footer>
 </body>
 </html>

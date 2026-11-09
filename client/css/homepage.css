@@ -1,0 +1,30 @@
+.text{
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+}
+
+ol{
+    list-style: none;
+}
+#categories-list{
+    margin: 10px 0;
+}
+
+img {
+    filter: blur(4px);
+}
+footer{
+    display: block;
+    position: fixed;
+    align-items: center;
+
+}
+#about{
+    text-align: center;
+}
+#contact{
+    text-align: center;
+}
