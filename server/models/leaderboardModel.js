@@ -3,16 +3,14 @@ const db = require('../database/connect')
 class Leaderboard {
     constructor ({
         user_id,
-        username,
-        points
+        total_points
     }) {
         this.user_id = user_id
-        this.username = username
-        this.points = points
+        this.total_points = total_points
     }
 
     static async getAll() {
-        const response = await db.query('SELECT username, points FROM user_account ORDER BY points DESC LIMIT 10')
+        const response = await db.query('SELECT user_id, total_points FROM user_game_stats ORDER BY total_points DESC LIMIT 10')
         console.log(response)
         if (response.rows.length === 0) {
             throw new Error('No points available')

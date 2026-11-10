@@ -15,8 +15,7 @@ app.use(express.json())
 
 app.get("/", (req, res) => {
     res.json({
-        name: "Quasar Educational Game",
-        description: "BEST GAME EVER!!!"
+        name: "Educational-image-game",
     })
 })
 
