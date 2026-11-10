@@ -19,15 +19,16 @@ async function register (req,res) {
 async function login(req, res) {
     const data = req.body;
     try {
-      const user = await User.getOneByUsername(data.username);
-      if(!user) { throw new Error('No user with this username') }
-      const match = await bcrypt.compare(data.password, user.password);
-  
-      if (match) {
+        const user = await User.getOneByUsername(data.username);
+        if(!user) { throw new Error('No user with this username') }
+        const match = await bcrypt.compare(data.password, user.password);
+
+        if (match) {
             res.status(200).json({
                 success: true,
                 message: 'User authenticated successfully'
             });
+            console.log("user logged in");
         } else {
             throw new Error('User could not be authenticated');
         }
