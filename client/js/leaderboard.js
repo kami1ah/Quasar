@@ -17,8 +17,8 @@ async function displayLeaderboard() {
             const tc2 = tr.insertCell();
             
             tc1.textContent = index + 1; 
-            tc1.textContent = item.username;  
-            tc2.textContent = item.points; 
+            tc1.textContent = item.name;  
+            tc2.textContent = item.score; 
         });
 
         leaderboardContainer.appendChild(table);
@@ -27,3 +27,4 @@ async function displayLeaderboard() {
         console.error("Error loading leaderboard:", err)
     }
 }
+

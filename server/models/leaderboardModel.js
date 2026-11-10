@@ -11,8 +11,9 @@ class Leaderboard {
         this.points = points
     }
 
-    static async getAll(points) {
+    static async getAll() {
         const response = await db.query('SELECT username, points FROM user_account ORDER BY points DESC LIMIT 10')
+        console.log(response)
         if (response.rows.length === 0) {
             throw new Error('No points available')
         }
