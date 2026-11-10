@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
     <link rel="stylesheet" href="../css/homepage.css">
+    <script src="../js/geography.js" defer></script>
     <title>Geography</title>
 </head>
 <body>
@@ -39,7 +40,54 @@
 
     <main>
 
+        <section id="gotd-heading" class="w-100 text-center">
+            <h1>Geography</h1> <br>
+            <h2>Where is this?</h2>
+        </section>
 
+        <br>
+
+        <section id="geographyImage" class="w-100 text-center">
+                <img alt="">
+        </section>
+        <br>
+
+        <section class="w-100 text-center">
+            <input type="text" >
+            <input type="submit" hidden />
+        </section>
+        <br>
+        <section class="w-100 text-center">
+            <h4 >Hint</h4>
+        </section>
+        <br>
+        <section>
+            <div class="modal-content px-3">
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center align-items-center gap-4">
+
+                        <button type="button" class="btn btn-primary">
+                            Hint
+                        </button>
+
+                        <p class="mb-0">Points: ...</p>
+
+                        <p class="mb-0">Hints left: ...</p>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <br>
+        <section>
+            <div class="d-flex justify-content-center align-items-center gap-4">
+                <button type="button" class="btn btn-primary">
+                    Next Question
+                </button>
+            </div>                
+        </section>
+        <br>
     </main>
    
  

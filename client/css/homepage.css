@@ -16,6 +16,14 @@ ol{
 img {
     filter: blur(4px);
 }
+
+#geographyImage img {
+    width: 800px;
+    height: 600px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
 footer{
     display: block;
     position: fixed;
