@@ -11,6 +11,7 @@ app.use(cors())
 //app.use(logger)
 app.use(express.json())
 
+//app.use('/router', gameRouter)
 
 app.get("/", (req, res) => {
     res.json({
@@ -22,5 +23,9 @@ app.get("/", (req, res) => {
 
 app.use('/users', userRouter)
 app.use('/question',questionRouter)
+
+const leaderboardRouter = require("./routers/leaderboardRouter");
+
+app.use("/api", leaderboardRouter);
 
 module.exports = app
