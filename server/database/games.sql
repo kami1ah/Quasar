@@ -15,7 +15,8 @@ CREATE TABLE questions (
     question_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     image_url TEXT NOT NULL,
     answer VARCHAR(100) NOT NULL,
-    category VARCHAR(150) NOT NULL
+    category VARCHAR(150) NOT NULL,
+    description TEXT NOT NULL
 );
 
 CREATE TABLE hints (
@@ -23,31 +24,75 @@ CREATE TABLE hints (
     question_id INTEGER NOT NULL,
     hint_order INTEGER NOT NULL,
     hint_text VARCHAR(255) NOT NULL,
-
     FOREIGN KEY (question_id) REFERENCES questions(question_id)
 );
 
 
 
-INSERT INTO questions (image_url, answer, category) VALUES
--- Figures (add your own image URLs)
-('https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg/1280px-Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail', 'Isaac Newton',        'Figures'),
-('https://upload.wikimedia.org/wikipedia/commons/2/21/William_Shakespeare_by_John_Taylor%2C_edited.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original', 'William Shakespeare', 'Figures'),
-('https://upload.wikimedia.org/wikipedia/commons/2/28/Albert_Einstein_Head_cleaned.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original', 'Albert Einstein',     'Figures'),
-('https://upload.wikimedia.org/wikipedia/commons/a/af/Darnley_stage_3.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original', 'Elizabeth I',         'Figures'),
-('https://www.leonardodavinci.net/assets/img/leonardo-da-vinci.jpg', 'Leonardo da Vinci',   'Figures'),
+INSERT INTO questions (image_url, answer, category, description) VALUES
+
+-- Figures
+('https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg/1280px-Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail',
+'Isaac Newton', 'Figures',
+'An English mathematician and physicist whose discoveries transformed our understanding of the natural world. His work on gravity and the laws of motion laid the foundations for classical physics.'),
+
+('https://upload.wikimedia.org/wikipedia/commons/2/21/William_Shakespeare_by_John_Taylor%2C_edited.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original',
+'William Shakespeare', 'Figures',
+'An English playwright and poet widely regarded as one of the greatest writers in the English language. His plays and poems have had a lasting influence on literature, theatre and storytelling.'),
+
+('https://upload.wikimedia.org/wikipedia/commons/2/28/Albert_Einstein_Head_cleaned.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original',
+'Albert Einstein', 'Figures',
+'A theoretical physicist whose groundbreaking ideas changed how scientists understand space, time and energy. His theory of relativity revolutionised modern physics.'),
+
+('https://upload.wikimedia.org/wikipedia/commons/a/af/Darnley_stage_3.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original',
+'Elizabeth I', 'Figures',
+'One of England''s most influential monarchs, whose reign marked a period of significant cultural and political development. Her leadership helped establish England as a major European power.'),
+
+('https://www.leonardodavinci.net/assets/img/leonardo-da-vinci.jpg',
+'Leonardo da Vinci', 'Figures',
+'An Italian artist, inventor and scientist who became one of the leading figures of the Renaissance. His work combined art, engineering and scientific investigation.'),
+
 -- Monuments
-('https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg?width=800', 'Eiffel Tower',      'Monuments'),
-('https://commons.wikimedia.org/wiki/Special:FilePath/Colosseo_2020.jpg?width=800',                 'Colosseum',         'Monuments'),
-('https://commons.wikimedia.org/wiki/Special:FilePath/Taj_Mahal_(Edited).jpeg?width=800',          'Taj Mahal',         'Monuments'),
-('https://commons.wikimedia.org/wiki/Special:FilePath/Stonehenge2007_07_30.jpg?width=800',          'Stonehenge',        'Monuments'),
-('https://commons.wikimedia.org/wiki/Special:FilePath/Statue_of_Liberty_7.jpg?width=800',           'Statue of Liberty', 'Monuments'),
+('https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg?width=800',
+'Eiffel Tower', 'Monuments',
+'One of the most recognisable structures in the world and a defining symbol of its capital city. Originally constructed for an international exhibition in the 19th century, it has become a major landmark.'),
+
+('https://commons.wikimedia.org/wiki/Special:FilePath/Colosseo_2020.jpg?width=800',
+'Colosseum', 'Monuments',
+'An enormous ancient amphitheatre built during the Roman Empire. It hosted gladiatorial contests and public spectacles, providing insight into Roman entertainment, architecture and society.'),
+
+('https://commons.wikimedia.org/wiki/Special:FilePath/Taj_Mahal_(Edited).jpeg?width=800',
+'Taj Mahal', 'Monuments',
+'A magnificent mausoleum commissioned by a Mughal emperor in memory of his wife. Famous for its white marble architecture, it is considered one of the finest examples of Mughal architecture.'),
+
+('https://commons.wikimedia.org/wiki/Special:FilePath/Stonehenge2007_07_30.jpg?width=800',
+'Stonehenge', 'Monuments',
+'A prehistoric monument consisting of a circular arrangement of enormous standing stones. Its construction demonstrates the engineering capabilities of ancient communities and its original purpose remains debated.'),
+
+('https://commons.wikimedia.org/wiki/Special:FilePath/Statue_of_Liberty_7.jpg?width=800',
+'Statue of Liberty', 'Monuments',
+'A monumental sculpture gifted by France to the United States as a symbol of friendship and freedom. It has become an internationally recognised representation of liberty and democracy.'),
+
 -- Geography
-('https://commons.wikimedia.org/wiki/Special:FilePath/Everest_kalapatthar.jpg?width=800',                      'Mount Everest', 'Geography'),
-('https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Canyon_view_from_Pima_Point_2010.jpg?width=800',   'Grand Canyon',  'Geography'),
-('https://commons.wikimedia.org/wiki/Special:FilePath/3Falls_Niagara.jpg?width=800',                           'Niagara Falls', 'Geography'),
-('https://commons.wikimedia.org/wiki/Special:FilePath/Uluru_(Helicopter_view)-crop.jpg?width=800',             'Uluru',         'Geography'),
-('https://commons.wikimedia.org/wiki/Special:FilePath/MtFuji_FujiCity.jpg?width=800',                          'Mount Fuji',    'Geography');
+('https://commons.wikimedia.org/wiki/Special:FilePath/Everest_kalapatthar.jpg?width=800',
+'Mount Everest', 'Geography',
+'The highest mountain on Earth above sea level. Located within the Himalayas, it has become a major destination for mountaineers and represents one of the greatest challenges in high-altitude climbing.'),
+
+('https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Canyon_view_from_Pima_Point_2010.jpg?width=800',
+'Grand Canyon', 'Geography',
+'A vast natural canyon formed through millions of years of erosion. Its enormous scale and exposed rock layers provide valuable evidence of geological history.'),
+
+('https://commons.wikimedia.org/wiki/Special:FilePath/3Falls_Niagara.jpg?width=800',
+'Niagara Falls', 'Geography',
+'A collection of three powerful waterfalls located along the border between Canada and the United States. Famous for their impressive volume of flowing water, they are also an important source of hydroelectric power.'),
+
+('https://commons.wikimedia.org/wiki/Special:FilePath/Uluru_(Helicopter_view)-crop.jpg?width=800',
+'Uluru', 'Geography',
+'A massive sandstone formation rising dramatically from the Australian desert. It holds deep spiritual and cultural significance for the Indigenous Anangu people.'),
+
+('https://commons.wikimedia.org/wiki/Special:FilePath/MtFuji_FujiCity.jpg?width=800',
+'Mount Fuji', 'Geography',
+'A prominent volcanic mountain that has become one of the most recognisable natural symbols of Japan. It has significant cultural and spiritual importance and has inspired artists and writers for centuries.');
  
 -- Hints (4 per question, vaguest first)
 INSERT INTO hints (question_id, hint_order, hint_text) VALUES
