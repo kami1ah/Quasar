@@ -13,9 +13,10 @@ ol{
     margin: 10px 0;
 }
 
-img {
+#image {
     filter: blur(4px);
 }
+
 footer{
     display: block;
     position: fixed;
@@ -27,4 +28,7 @@ footer{
 }
 #contact{
     text-align: center;
+}
+#loginButt{
+    width: 15vw;
 }

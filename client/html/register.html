@@ -11,7 +11,7 @@
 </head>
 <body>
     <div>
-        <button type="button" class="btn btn-primary">Home</button>
+        <button id="home" type="button" class="btn btn-primary">Home</button>
     </div>
     <div class="Logo">
         <img src="../assets/logo.png" alt="Logo image" width="250" height ="200">
@@ -29,8 +29,9 @@
             <label for="startDate">Age</label>
             <input id="startDate" class="form-control" type="date" />
         </div>
-        <div class="registerButt">
-            <button type="submit" class="btn btn-secondary">Register</button>
+        <div class="register">
+            <p id="error">This user already <strong>exists</strong></p>
+            <button id="registerButt" type="submit" class="btn btn-secondary">Register</button>
         </div>
     </form>
 

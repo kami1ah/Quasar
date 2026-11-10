@@ -1,15 +1,24 @@
 .form-floating{
     margin-left: 350px;
     margin-right: 350px;
+
 }
 .Logo{
     margin-top: 30px;
-    margin-left: 500px;
+    display: flex;
+    justify-content: center;
 }
 .logInButt{
     margin-top: 20px;
-    margin-left: 600px;
+    display: flex;
+    justify-content: center;
 }
 .register{
-    margin-left: 500px;
+    display: flex;
+    justify-content: center;
+}
+.error{
+    display: flex;
+    justify-content: center;
+    font-size: large;
 }

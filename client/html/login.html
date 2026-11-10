@@ -12,7 +12,7 @@
 </head>
 <body>
     <div>
-        <button type="button" class="btn btn-primary">Home</button>
+        <button id="home" type="button" class="btn btn-primary">Home</button>
     </div>
     <div class="Logo">
         <img src="../assets/logo.png" alt="Logo image" width="250" height ="200">
@@ -30,9 +30,12 @@
             <button id="login" type="submit" class="btn btn-secondary">Log-in</button>
         </div>
     </form>
-    <div class="register">
-        <p>if you do not have an account, <a href="register.html">register here</a>
+    <div >
+        <p class="register">if you do not have an account, <a href="register.html">register here</a>
         </p>
+    </div>
+    <div class="error">
+        <p id="loginError" hidden >The entered username or password is <strong>incorrect</strong></p>
     </div>
     
 </body>
