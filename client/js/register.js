@@ -2,6 +2,7 @@ const registerForm = document.getElementById("registerForm")
 const userUsername = document.getElementById("floatingInput")
 const userPassword = document.getElementById("floatingPassword")
 const userDate = document.getElementById("startDate")
+const error = document.getElementById("error")
 
 registerForm.addEventListener("submit", async (event) => {
     event.preventDefault()
@@ -17,6 +18,8 @@ registerForm.addEventListener("submit", async (event) => {
     
     if(response.status === 201){
         window.location.assign("login.html")
+    }else if(response.status === 400){
+        error.style.visibility = "visible";
     }
 
 

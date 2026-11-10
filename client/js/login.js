@@ -1,11 +1,14 @@
 const inputForm = document.getElementById("inputForm")
 const userUsername = document.getElementById("floatingInput")
 const userPassword = document.getElementById("floatingPassword")
+const error = document.getElementById("loginError")
 
 inputForm.addEventListener("submit", async (event) => {
     event.preventDefault()
     const username = userUsername.value
     const password = userPassword.value
+    
+    
 
     const response = await fetch("http://localhost:3000/users/login",{
         method: "POST",
@@ -14,5 +17,7 @@ inputForm.addEventListener("submit", async (event) => {
     })
     if (response.status === 200){
         window.location.assign("homepage.html")
+    } else if(response.status === 401){
+        error.hidden = false
     }
 })
