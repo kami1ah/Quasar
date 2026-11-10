@@ -4,7 +4,7 @@ const cors = require('cors')
 
 //const gameRouter = require('./routers/router')
 const userRouter = require('./routers/user');
-
+const questionRouter = require('./routers/question');
 
 const app = express()
 app.use(cors())
@@ -14,13 +14,13 @@ app.use(express.json())
 
 app.get("/", (req, res) => {
     res.json({
-        name: "Discretion",
-        description: "Send and receive private messages."
+        name: "Quasar Educational Game",
+        description: "BEST GAME EVER!!!"
     })
 })
 
 
 app.use('/users', userRouter)
-//app.use('/games',gameRouter)
+app.use('/question',questionRouter)
 
 module.exports = app
