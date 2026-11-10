@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const Stat = require('../models/Stat');
 
 async function register (req,res) {
     try {
@@ -10,8 +11,11 @@ async function register (req,res) {
         data["password"] = await bcrypt.hash(data.password, salt);
         console.log(data)
         const result = await User.create(data);
+        await Stat.createUserRecord(result.id);
         res.status(201).send(result);
+
     } catch (err) {
+        
         res.status(400).json({ error: err.message });
     }
 }
