@@ -3,6 +3,7 @@ const cors = require('cors')
 //const logger = require('./logger')
 
 //const gameRouter = require('./routers/router')
+const userRouter = require('./routers/user');
 
 
 const app = express()
@@ -12,11 +13,16 @@ app.use(express.json())
 
 //app.use('/router', gameRouter)
 
+app.get("/", (req, res) => {
+    res.json({
+        name: "Discretion",
+        description: "Send and receive private messages."
+    })
+})
 
-//const userRouter = require('./routers/user')
 
-//app.use('/user', userRouter)
-
+app.use('/users', userRouter)
+//app.use('/games',gameRouter)
 
 const leaderboardRouter = require("./routers/leaderboardRouter");
 
