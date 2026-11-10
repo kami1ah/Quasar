@@ -4,7 +4,7 @@ const cors = require('cors')
 
 //const gameRouter = require('./routers/router')
 const userRouter = require('./routers/user');
-
+const questionRouter = require('./routers/question');
 
 const app = express()
 app.use(cors())
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 
 
 app.use('/users', userRouter)
-//app.use('/games',gameRouter)
+app.use('/question',questionRouter)
 
 const leaderboardRouter = require("./routers/leaderboardRouter");
 
