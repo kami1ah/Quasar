@@ -3,6 +3,11 @@ const userUsername = document.getElementById("floatingInput")
 const userPassword = document.getElementById("floatingPassword")
 const userDate = document.getElementById("startDate")
 const error = document.getElementById("error")
+const home = document.getElementById("home")
+
+home.addEventListener("click", (event) => {
+    window.location.assign("homepage.html")
+})
 
 registerForm.addEventListener("submit", async (event) => {
     event.preventDefault()

@@ -2,6 +2,11 @@ const inputForm = document.getElementById("inputForm")
 const userUsername = document.getElementById("floatingInput")
 const userPassword = document.getElementById("floatingPassword")
 const error = document.getElementById("loginError")
+const home = document.getElementById("home")
+
+home.addEventListener("click", (event) => {
+    window.location.assign("homepage.html")
+})
 
 inputForm.addEventListener("submit", async (event) => {
     event.preventDefault()

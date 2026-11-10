@@ -20,8 +20,9 @@
 #error{
     visibility: hidden;
     margin: 0;
-    font-size: large;
+    font-size: larger;
+    color: red;
 }
 #registerButt{
-    margin-left: 30vw;
+    margin-left: 28vw;
 }
