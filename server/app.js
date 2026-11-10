@@ -1,21 +1,25 @@
 const express = require('express')
 const cors = require('cors')
-const logger = require('./logger')
+//const logger = require('./logger')
 
-const gameRouter = require('./routers/router')
+//const gameRouter = require('./routers/router')
 
 
 const app = express()
 app.use(cors())
-app.use(logger)
+//app.use(logger)
 app.use(express.json())
 
-app.use('/router', gameRouter)
+//app.use('/router', gameRouter)
 
 
-const userRouter = require('./routers/user')
+//const userRouter = require('./routers/user')
 
-app.use('/user', userRouter)
+//app.use('/user', userRouter)
 
+
+const leaderboardRouter = require("./routers/leaderboardRouter");
+
+app.use("/api", leaderboardRouter);
 
 module.exports = app
