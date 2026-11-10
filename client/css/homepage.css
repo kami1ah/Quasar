@@ -16,6 +16,7 @@ ol{
 #image {
     filter: blur(4px);
 }
+
 footer{
     display: block;
     position: fixed;
