@@ -47,3 +47,4 @@ function extractImg (data) {
 
 getImage(category);
 
+
