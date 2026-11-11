@@ -1,9 +1,14 @@
 # FRONT END README
 
+Description 
+
+### Table of Contents
+
+
 ## Pages
 
 
-## Colour scheme(CSS)
+## Color scheme(CSS)
 
 
 ## Functionalities
