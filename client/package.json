@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "jest": "^30.5.2",
+    "jsdom": "^20.0.0",
+    "live-server": "^1.2.2"
+  }, 
+    "scripts": {
+    "dev": "live-server",
+    "test": "jest --watchAll",
+    "coverage": "jest --coverage"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "./__tests__/helpers.js"
+    ]
+  }
+}
