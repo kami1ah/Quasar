@@ -59,6 +59,7 @@ function extractImg (data) {
     id.push(data.id)
     newid = data.id
     questionCounter++
+    console.log(questionCounter);
 }
 
 
@@ -192,6 +193,10 @@ const pointsCount = document.querySelector('#pointCount p');
 let points = 500;
 let total = 0;
 
+const username = localStorage.getItem("username")
+
+console.log(username);
+
 async function pointTotal(hintCounter, questionCounter) {
     const hintsUsed = 4 - hintCounter;
 
@@ -211,7 +216,7 @@ async function pointTotal(hintCounter, questionCounter) {
                     points: total
                 })
             };
-            const username = localStorage.getItem("username")
+            console.log(username);
             const user = await getUser(username);
             const userId = user.user_id;
             const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
@@ -230,7 +235,7 @@ async function getUser(username2) {
     //const imgContainer = document.getElementById("middle");
     
     try {
-        const resp = await fetch(`http://localhost:3000/users/${username2}`);
+        const resp = await fetch(`http://localhost:3000/users/${encodeURIComponent(username2)}`);
         // console.log(resp)
         if (resp.ok) {
             const data = await resp.json();
@@ -244,4 +249,3 @@ async function getUser(username2) {
     }
 }
 
-getUser(username2)
