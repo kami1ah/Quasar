@@ -105,6 +105,7 @@ All available API endpoints with their methods and descriptions.
 |--------|---------------------------|------------------------------|
 | POST    | /users/register          | Registers a new user by storing their username, hashed password and date of birth in the `user_account table`. Also creates an empty row in `user_game_stats`.        |
 | POST    | /users/login           | Authenticates a user by comparing the submitted password against the stored hashed password.    |
+| GET | /users/:username | Retrieves the userid based given a specific username |
 |  GET     |        /question/:category                         |        Retrieves a random question from the specified category, alongside all associated hints.          |
 |    GET   |   /stats     |Retrieves the top 10 users ranked by total points in descending order.         |
 |    GET |    /stats/:user_id    | Retrieves all game statistics for a specific user.        |
