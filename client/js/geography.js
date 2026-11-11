@@ -266,7 +266,6 @@ async function pointTotal(hintCounter, questionCounter) {
 
 async function getUser() {
     //const imgContainer = document.getElementById("middle");
-    console.log(username + "blah")
     try {
         const resp = await fetch(`http://localhost:3000/users/${username2}`);
         // console.log(resp)
