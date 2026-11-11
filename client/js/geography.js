@@ -4,6 +4,7 @@ const params = new URLSearchParams(window.location.search);
 
 const preCategory = params.get("category");
 
+const username = localStorage.getItem("username")
 
 const array = ['Figures', 'Monuments', 'Geography'];
 
@@ -211,8 +212,8 @@ async function pointTotal(hintCounter, questionCounter) {
                     points: total
                 })
             };
-            const username = localStorage.getItem("username")
-            const user = await getUser(username);
+            
+            const user = await getUser();
             const userId = user.user_id;
             const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
             console.log(response)
@@ -226,11 +227,11 @@ async function pointTotal(hintCounter, questionCounter) {
 }
 
 
-async function getUser(username2) {
+async function getUser() {
     //const imgContainer = document.getElementById("middle");
-    
+    console.log(username + "blah")
     try {
-        const resp = await fetch(`http://localhost:3000/users/${username2}`);
+        const resp = await fetch(`http://localhost:3000/users/${username}`);
         // console.log(resp)
         if (resp.ok) {
             const data = await resp.json();
@@ -244,4 +245,3 @@ async function getUser(username2) {
     }
 }
 
-getUser(username2)
