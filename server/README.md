@@ -147,6 +147,12 @@ To log in, use the following POST request and provide the user's username and pa
 
 ### Example Response
 
+## Get Userid given username
+### Example Request
+
+### Example Response
+
+
 ## Get a random question by category
 ### Example Request
 To retrieve a random question from a specific category, use the following GET request:
