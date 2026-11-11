@@ -115,18 +115,30 @@ All available API endpoints with their methods and descriptions.
 To register a new user, use the following POST request and provide a JSON object containing the user's details:
 
 ```json
+        {
+          "username": "User1",
+          "password": "Password1",
+          "age": "2005-06-15"
 
+        }
 
 ```
 
 `POST /users/register`
 ### Example Response
+
+
+
 ## Login
 
 ### Example Request
 To log in, use the following POST request and provide the user's username and password:
 
 ```json
+        {
+          "username": "User1",
+          "password": "Password1",
+        }
 ```
 
 `POST /users/login`

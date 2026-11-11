@@ -256,3 +256,52 @@ INSERT INTO hints (question_id, hint_order, hint_text) VALUES
 (15, 3, 'It is the tallest mountain in its country.'),
 (15, 4, 'It is in Japan.');
  
+INSERT INTO user_account (username, password, age, school)
+VALUES
+('alex123', 'password123', '2008-04-15', 'Watford Grammar School'),
+('sarah22', 'password456', '2007-09-22', 'Queens School'),
+('james99', 'password789', '2008-12-03', 'Parmiters School');
+
+INSERT INTO user_game_stats (
+    user_id,
+    historical_figures_points,
+    monuments_points,
+    geography_points,
+    historical_figures_games,
+    monuments_games,
+    geography_games
+)
+SELECT
+    user_id,
+    CASE username
+        WHEN 'alex123' THEN 120
+        WHEN 'sarah22' THEN 200
+        WHEN 'james99' THEN 80
+    END,
+    CASE username
+        WHEN 'alex123' THEN 90
+        WHEN 'sarah22' THEN 150
+        WHEN 'james99' THEN 110
+    END,
+    CASE username
+        WHEN 'alex123' THEN 140
+        WHEN 'sarah22' THEN 100
+        WHEN 'james99' THEN 160
+    END,
+    CASE username
+        WHEN 'alex123' THEN 5
+        WHEN 'sarah22' THEN 8
+        WHEN 'james99' THEN 3
+    END,
+    CASE username
+        WHEN 'alex123' THEN 4
+        WHEN 'sarah22' THEN 6
+        WHEN 'james99' THEN 5
+    END,
+    CASE username
+        WHEN 'alex123' THEN 7
+        WHEN 'sarah22' THEN 4
+        WHEN 'james99' THEN 6
+    END
+FROM user_account
+WHERE username IN ('alex123', 'sarah22', 'james99');
