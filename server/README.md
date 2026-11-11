@@ -93,6 +93,15 @@ geography_games: Integer, default 0
 total_games: Generated Integer (stored)
     = historical_figures_games + monuments_games + geography_games
 ```
+
+### .env File
+In order for the backend to work, the created `.env` file should look like below:
+```js
+DB_URL=<your_database_url>
+PORT=<port_of_your_choice>
+BCRYPT_SALT_ROUNDS=10
+```
+
 ## API Endpoints
 
 All available API endpoints with their methods and descriptions.
