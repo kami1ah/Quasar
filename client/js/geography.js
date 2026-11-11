@@ -221,6 +221,10 @@ const pointsCount = document.querySelector('#pointCount p');
 let points = 0;
 let total = 0;
 
+const username = localStorage.getItem("username")
+
+console.log(username);
+
 async function pointTotal(hintCounter, questionCounter) {
     const hintsUsed = 4 - hintCounter;
 
@@ -229,23 +233,23 @@ async function pointTotal(hintCounter, questionCounter) {
     if (questionPoints > 0){
         total += questionPoints;
 
-    // if (questionCounter == 5) {
-    //         const options = {
-    //             method: "PATCH",
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 category: category,
-    //                 points: total
-    //             })
-    //         };
-            
-    //         const user = await getUser();
-    //         const userId = user.user_id;
-    //         const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
-    //         console.log(response)
+    if (questionCounter == 5) {
+            const options = {
+                method: "PATCH",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    category: category,
+                    points: total
+                })
+            };
+            const username = localStorage.getItem("username")
+            const user = await getUser(username);
+            const userId = user.user_id;
+            const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
+            console.log(response)
 
     // }
 
@@ -264,7 +268,7 @@ async function getUser() {
     //const imgContainer = document.getElementById("middle");
     console.log(username + "blah")
     try {
-        const resp = await fetch(`http://localhost:3000/users/${username}`);
+        const resp = await fetch(`http://localhost:3000/users/${username2}`);
         // console.log(resp)
         if (resp.ok) {
             const data = await resp.json();
