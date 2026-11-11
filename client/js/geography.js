@@ -60,6 +60,7 @@ function extractImg (data) {
     id.push(data.id)
     newid = data.id
     questionCounter++
+    //console.log(questionCounter);
 }
 
 
@@ -89,12 +90,17 @@ async function getAnswer(answer, hints, counter, description) {
     if (counter == 5) {
         window.location.href = "./homepage.html";
     }
+
+
+    if (isCorrect) {
+        return;
+    }
     if (correctAnswer.toLowerCase() === answer.trim().toLowerCase()) {
         //console.log(correctAnswer);
-        winAnswer.textContent = 'YOU WIN!!';
-        isCorrect = true;
-        // console.log(description);
-        pointTotal (hintCounter, questionCounter)
+        if (!isCorrect) {
+            isCorrect = true;
+            pointTotal(hintCounter, questionCounter);
+        }
         knowledge.textContent = description;
     } else {
         winAnswer.textContent = 'Try again!';
@@ -141,6 +147,27 @@ const nxtQuestion = document.getElementById("nxtQuestion");
 nxtQuestion.addEventListener("click", async (e) => {
     e.preventDefault();
 
+    if (questionCounter == 5) {
+        console.log(total);
+            const options = {
+                method: "PATCH",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    category: category,
+                    points: total
+                })
+            };
+            
+            const user = await getUser();
+            const userId = user.user_id;
+            const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
+            console.log(response)
+
+    }
+
     if (questionCounter >= 5) {
         winAnswer.textContent = "Game completed! You have finished all 5 questions.";
         nxtQuestion.disabled = true;
@@ -177,11 +204,12 @@ nxtQuestion.addEventListener("click", async (e) => {
     counterBtn = -1;
     hintCounter = 4;
     counter = 0;
+    isCorrect = false;
 
     hintCount.textContent = "Hints left: 5";
     winAnswer.textContent = "";
     knowledge.textContent = "";
-    pointsCount.textContent = "Points:";
+    pointsCount.textContent = "Points: 0";
 
     document.getElementById("answer").value = "";
 });
@@ -190,37 +218,42 @@ nxtQuestion.addEventListener("click", async (e) => {
 
 const pointsCount = document.querySelector('#pointCount p');
 
-let points = 500;
+let points = 0;
 let total = 0;
 
 async function pointTotal(hintCounter, questionCounter) {
     const hintsUsed = 4 - hintCounter;
 
-    const questionPoints = points - (hintsUsed * 100);
+    const questionPoints = 500 - (hintsUsed * 100);
+    const points2 = 0
+    if (questionPoints > 0){
+        total += questionPoints;
 
-    total += questionPoints;
-
-    if (questionCounter == 5) {
-            const options = {
-                method: "PATCH",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    category: category,
-                    points: total
-                })
-            };
+    // if (questionCounter == 5) {
+    //         const options = {
+    //             method: "PATCH",
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 category: category,
+    //                 points: total
+    //             })
+    //         };
             
-            const user = await getUser();
-            const userId = user.user_id;
-            const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
-            console.log(response)
+    //         const user = await getUser();
+    //         const userId = user.user_id;
+    //         const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
+    //         console.log(response)
 
+    // }
+
+        pointsCount.textContent = `Points: ${questionPoints}`;
+    } else {
+        pointsCount.textContent = `Points: ${points}`;
     }
-
-    pointsCount.textContent = `Points: ${questionPoints}`;
+    
 
     console.log(`Question ${questionCounter}: ${questionPoints} points`);
     console.log(`Total: ${total} points`);
