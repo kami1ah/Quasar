@@ -244,4 +244,4 @@ async function getUser(username2) {
     }
 }
 
-getUser()
+getUser(username2)
