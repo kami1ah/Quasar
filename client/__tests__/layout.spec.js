@@ -27,7 +27,7 @@ describe('login.html', () => {
     expect(button.textContent).toContain('Log-in')
   })
 
-  it('has an input section where username abd password can be inputted', () => {
+  it('has an input section where username and password can be inputted', () => {
     const form = document.querySelector('form')
 
     const usernameInput = document.querySelector('#floatingInput')
