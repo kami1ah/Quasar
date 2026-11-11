@@ -3,6 +3,7 @@ const { renderDOM } = require('./helpers');
 let dom;
 let document;
 
+//Testing the login page
 describe('login.html', () => {
     beforeEach(async () => {
     dom = await renderDOM('../html/login.html');
@@ -26,7 +27,7 @@ describe('login.html', () => {
     expect(button.textContent).toContain('Log-in')
   })
 
-  it('has an input section where username abd password can be inputted', () => {
+  it('has an input section where username and password can be inputted', () => {
     const form = document.querySelector('form')
 
     const usernameInput = document.querySelector('#floatingInput')
@@ -53,7 +54,6 @@ describe('login.html', () => {
 })
 
 //Testing the register page
-
 describe('register.html', () => {
     beforeEach(async () => {
     dom = await renderDOM('../html/register.html');
@@ -92,11 +92,11 @@ describe('register.html', () => {
 
     usernameInput.value = 'username'
     passwordInput.value = 'password'
-    // dobInput.value = ('01,01,2011')
+    dobInput.value = ('2015-07-29')
 
     expect(usernameInput.value).toBe('username')
     expect(passwordInput.value).toBe('password')
-    // expect(dobInput.value).toBe('01,01,2011')
+    expect(dobInput.value).toBe('2015-07-29')
   })
 
 })
@@ -136,51 +136,317 @@ describe('homepage.html', () => {
   })
 })
 
+//Testing the Game of the Day Page
+describe('gameoftheday.html', () => {
+    beforeEach(async () => {
+    dom = await renderDOM('../html/gameoftheday.html');
+    document = await dom.window.document;
+    })
 
-// //Testing the homepage
-// describe('gameoftheday.html', () => {
-//     beforeEach(async () => {
-//     dom = await renderDOM('../html/gameoftheday.html');
-//     document = await dom.window.document;
-//     })
+  it('has a subject name at the top of the page', () => {
+    const subjectName = document.querySelector('h1')
 
-//     afterEach(() => {
-//         dom.window.close()
-//     })
+    expect(subjectName).toBeTruthy()
+    expect(subjectName.innerHTML).toBe('Game of the day!')
+  });
 
+  it('has an image displayed that the user will be quizzed on', () => {
+      const image = document.querySelector('#geographyImage img')
 
-//   it('has a subject name at the top of the page', () => {
-//     const subjectName = document.querySelector('h1')
+      expect(image).toBeTruthy()
+      expect(image.tagName).toContain('IMG')
+    })
 
-//     expect(subjectName).toBeTruthy()
-//     expect(subjectName.innerHTML).toBe('Game of the day!')
-//   });
+    it('has an input section where the user can input and submit their guesses', () => {
+      const answerInput = document.querySelector('#answer')
+      const submitButton = document.querySelector('#submit')
 
-//     it('has an image displayed that the user will be quizzed on', () => {
-//         const image = document.querySelector('img')
+      expect(answerInput).toBeTruthy()
+      expect(submitButton).toBeTruthy()
 
-//         expect(image).toBeTruthy()
-//         expect(image.alt).toBe('')
-//     })
+      expect(answerInput.type).toContain('text')
+      expect(submitButton.type).toContain('submit')
 
-//     it('has an input section where the user can input and submit their guesses', () => {
-//         const answerInput = document.querySelector('input[type="text"]')
-//         const submitButton = document.querySelector('input[type="submit"]')
+    })
 
-//         expect(answerInput).toBeTruthy()
-//         expect(submitButton).toBeTruthy()
+    it('has a button that when clicked it reveals an hint', () => {
+      const button = document.querySelector('#hintBtn')
 
+      expect(button).toBeTruthy()
+      expect(button.textContent).toContain('Hint')
+    })
 
-//         expect(answerInput.type).toBe('text')
-//         expect(submitButton.type).toBe('submit')
+    it('displays the points the user collected', () => {
+      const pointCount = document.querySelector('#pointCount')
 
-        
-//     })
+      expect(pointCount).toBeTruthy()
+      expect(pointCount.textContent).toContain('Points:')
+    })
 
-//     it('has a button that when clicked it reveals an hint', () => {
-//         const button = document.querySelector('button')
-//         expect(button).toBeTruthy()
-//         expect(button.textContent).toContain('Hint')
-//     })
+    it('displays the amount of hint the user have when they start the game', () => {
+      const hintCount = document.querySelector('#hintCount')
 
-// })
+      expect(hintCount).toBeTruthy()
+      expect(hintCount.textContent).toContain('Hints left: 5')
+    })
+
+    it('has a button for the user to navigate to the next question', () => {
+      const nxtQuestionBtn = document.querySelector('#nxtQuestion')
+
+      expect(nxtQuestionBtn).toBeTruthy()
+      expect(nxtQuestionBtn.innerHTML).toContain('Next Question')
+    })
+})
+
+//Testing the Geography
+describe('geography.html', () => {
+    beforeEach(async () => {
+    dom = await renderDOM('../html/geography.html');
+    document = await dom.window.document;
+    })
+
+  it('has a subject name at the top of the page', () => {
+    const subjectName = document.querySelector('h1')
+
+    expect(subjectName).toBeTruthy()
+    expect(subjectName.innerHTML).toBe('Geography')
+  });
+
+  it('has an image displayed that the user will be quizzed on', () => {
+      const image = document.querySelector('#geographyImage img')
+
+      expect(image).toBeTruthy()
+      expect(image.tagName).toContain('IMG')
+    })
+
+    it('has an input section where the user can input and submit their guesses', () => {
+      const answerInput = document.querySelector('#answer')
+      const submitButton = document.querySelector('#submit')
+
+      expect(answerInput).toBeTruthy()
+      expect(submitButton).toBeTruthy()
+
+      expect(answerInput.type).toContain('text')
+      expect(submitButton.type).toContain('submit')
+
+    })
+
+    it('has a button that when clicked it reveals an hint', () => {
+      const button = document.querySelector('#hintBtn')
+
+      expect(button).toBeTruthy()
+      expect(button.textContent).toContain('Hint')
+    })
+
+    it('displays the points the user collected', () => {
+      const pointCount = document.querySelector('#pointCount')
+
+      expect(pointCount).toBeTruthy()
+      expect(pointCount.textContent).toContain('Points:')
+    })
+
+    it('displays the amount of hint the user have when they start the game', () => {
+      const hintCount = document.querySelector('#hintCount')
+
+      expect(hintCount).toBeTruthy()
+      expect(hintCount.textContent).toContain('Hints left: 5')
+    })
+
+    it('has a button for the user to navigate to the next question', () => {
+      const nxtQuestionBtn = document.querySelector('#nxtQuestion')
+
+      expect(nxtQuestionBtn).toBeTruthy()
+      expect(nxtQuestionBtn.innerHTML).toContain('Next Question')
+    })
+
+})
+
+//Testing the Historical Figures Page
+describe('historicalfigures.html', () => {
+    beforeEach(async () => {
+    dom = await renderDOM('../html/historicalfigures.html');
+    document = await dom.window.document;
+    })
+
+  it('has a subject name at the top of the page', () => {
+    const subjectName = document.querySelector('h1')
+
+    expect(subjectName).toBeTruthy()
+    expect(subjectName.innerHTML).toBe('Historical Figures')
+  });
+
+  it('has an image displayed that the user will be quizzed on', () => {
+      const image = document.querySelector('#geographyImage img')
+
+      expect(image).toBeTruthy()
+      expect(image.tagName).toContain('IMG')
+    })
+
+    it('has an input section where the user can input and submit their guesses', () => {
+      const answerInput = document.querySelector('#answer')
+      const submitButton = document.querySelector('#submit')
+
+      expect(answerInput).toBeTruthy()
+      expect(submitButton).toBeTruthy()
+
+      expect(answerInput.type).toContain('text')
+      expect(submitButton.type).toContain('submit')
+
+    })
+
+    it('has a button that when clicked it reveals an hint', () => {
+      const button = document.querySelector('#hintBtn')
+
+      expect(button).toBeTruthy()
+      expect(button.textContent).toContain('Hint')
+    })
+
+    it('displays the points the user collected', () => {
+      const pointCount = document.querySelector('#pointCount')
+
+      expect(pointCount).toBeTruthy()
+      expect(pointCount.textContent).toContain('Points:')
+    })
+
+    it('displays the amount of hint the user have when they start the game', () => {
+      const hintCount = document.querySelector('#hintCount')
+
+      expect(hintCount).toBeTruthy()
+      expect(hintCount.textContent).toContain('Hints left: 5')
+    })
+
+    it('has a button for the user to navigate to the next question', () => {
+      const nxtQuestionBtn = document.querySelector('#nxtQuestion')
+
+      expect(nxtQuestionBtn).toBeTruthy()
+      expect(nxtQuestionBtn.innerHTML).toContain('Next Question')
+    })
+
+})
+
+//Testing the Geography
+describe('geography.html', () => {
+    beforeEach(async () => {
+    dom = await renderDOM('../html/geography.html');
+    document = await dom.window.document;
+    })
+
+  it('has a subject name at the top of the page', () => {
+    const subjectName = document.querySelector('h1')
+
+    expect(subjectName).toBeTruthy()
+    expect(subjectName.innerHTML).toBe('Geography')
+  });
+
+  it('has an image displayed that the user will be quizzed on', () => {
+      const image = document.querySelector('#geographyImage img')
+
+      expect(image).toBeTruthy()
+      expect(image.tagName).toContain('IMG')
+    })
+
+    it('has an input section where the user can input and submit their guesses', () => {
+      const answerInput = document.querySelector('#answer')
+      const submitButton = document.querySelector('#submit')
+
+      expect(answerInput).toBeTruthy()
+      expect(submitButton).toBeTruthy()
+
+      expect(answerInput.type).toContain('text')
+      expect(submitButton.type).toContain('submit')
+
+    })
+
+    it('has a button that when clicked it reveals an hint', () => {
+      const button = document.querySelector('#hintBtn')
+
+      expect(button).toBeTruthy()
+      expect(button.textContent).toContain('Hint')
+    })
+
+    it('displays the points the user collected', () => {
+      const pointCount = document.querySelector('#pointCount')
+
+      expect(pointCount).toBeTruthy()
+      expect(pointCount.textContent).toContain('Points:')
+    })
+
+    it('displays the amount of hint the user have when they start the game', () => {
+      const hintCount = document.querySelector('#hintCount')
+
+      expect(hintCount).toBeTruthy()
+      expect(hintCount.textContent).toContain('Hints left: 5')
+    })
+
+    it('has a button for the user to navigate to the next question', () => {
+      const nxtQuestionBtn = document.querySelector('#nxtQuestion')
+
+      expect(nxtQuestionBtn).toBeTruthy()
+      expect(nxtQuestionBtn.innerHTML).toContain('Next Question')
+    })
+
+})
+
+//Testing the Historical Monuments Page
+describe('historicalmonuments.html', () => {
+    beforeEach(async () => {
+    dom = await renderDOM('../html/historicalmonuments.html');
+    document = await dom.window.document;
+    })
+
+  it('has a subject name at the top of the page', () => {
+    const subjectName = document.querySelector('h1')
+
+    expect(subjectName).toBeTruthy()
+    expect(subjectName.innerHTML).toBe('Monuments')
+  });
+
+  it('has an image displayed that the user will be quizzed on', () => {
+      const image = document.querySelector('#geographyImage img')
+
+      expect(image).toBeTruthy()
+      expect(image.tagName).toContain('IMG')
+    })
+
+    it('has an input section where the user can input and submit their guesses', () => {
+      const answerInput = document.querySelector('#answer')
+      const submitButton = document.querySelector('#submit')
+
+      expect(answerInput).toBeTruthy()
+      expect(submitButton).toBeTruthy()
+
+      expect(answerInput.type).toContain('text')
+      expect(submitButton.type).toContain('submit')
+
+    })
+
+    it('has a button that when clicked it reveals an hint', () => {
+      const button = document.querySelector('#hintBtn')
+
+      expect(button).toBeTruthy()
+      expect(button.textContent).toContain('Hint')
+    })
+
+    it('displays the points the user collected', () => {
+      const pointCount = document.querySelector('#pointCount')
+
+      expect(pointCount).toBeTruthy()
+      expect(pointCount.textContent).toContain('Points:')
+    })
+
+    it('displays the amount of hint the user have when they start the game', () => {
+      const hintCount = document.querySelector('#hintCount')
+
+      expect(hintCount).toBeTruthy()
+      expect(hintCount.textContent).toContain('Hints left: 5')
+    })
+
+    it('has a button for the user to navigate to the next question', () => {
+      const nxtQuestionBtn = document.querySelector('#nxtQuestion')
+
+      expect(nxtQuestionBtn).toBeTruthy()
+      expect(nxtQuestionBtn.innerHTML).toContain('Next Question')
+    })
+
+})
+
