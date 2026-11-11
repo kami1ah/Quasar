@@ -136,3 +136,51 @@ describe('homepage.html', () => {
   })
 })
 
+
+// //Testing the homepage
+// describe('gameoftheday.html', () => {
+//     beforeEach(async () => {
+//     dom = await renderDOM('../html/gameoftheday.html');
+//     document = await dom.window.document;
+//     })
+
+//     afterEach(() => {
+//         dom.window.close()
+//     })
+
+
+//   it('has a subject name at the top of the page', () => {
+//     const subjectName = document.querySelector('h1')
+
+//     expect(subjectName).toBeTruthy()
+//     expect(subjectName.innerHTML).toBe('Game of the day!')
+//   });
+
+//     it('has an image displayed that the user will be quizzed on', () => {
+//         const image = document.querySelector('img')
+
+//         expect(image).toBeTruthy()
+//         expect(image.alt).toBe('')
+//     })
+
+//     it('has an input section where the user can input and submit their guesses', () => {
+//         const answerInput = document.querySelector('input[type="text"]')
+//         const submitButton = document.querySelector('input[type="submit"]')
+
+//         expect(answerInput).toBeTruthy()
+//         expect(submitButton).toBeTruthy()
+
+
+//         expect(answerInput.type).toBe('text')
+//         expect(submitButton.type).toBe('submit')
+
+        
+//     })
+
+//     it('has a button that when clicked it reveals an hint', () => {
+//         const button = document.querySelector('button')
+//         expect(button).toBeTruthy()
+//         expect(button.textContent).toContain('Hint')
+//     })
+
+// })
