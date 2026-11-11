@@ -1,3 +1,12 @@
+body{
+    background-color: antiquewhite;
+    font-family: sans-serif;
+
+}
+
+.custom-btn{
+    background-color: orange;
+}
 .form-floating{
     margin-left: 350px;
     margin-right: 350px;
@@ -13,6 +22,8 @@
     display: flex;
     justify-content: center;
 }
+
+
 .register{
     display: flex;
     justify-content: center;
@@ -21,4 +32,8 @@
     display: flex;
     justify-content: center;
     font-size: large;
+}
+p {
+    display: flex;
+    justify-content: center
 }
