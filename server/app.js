@@ -7,7 +7,7 @@ const userRouter = require('./routers/user');
 const questionRouter = require('./routers/question');
 const statRouter = require('./routers/stat');
 const app = express()
-app.use(cors())
+app.use(cors({origin: "https://quasar-zyww.onrender.com"}))
 //app.use(logger)
 app.use(express.json())
 const path = require("path");
