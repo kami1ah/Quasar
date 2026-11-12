@@ -15,6 +15,7 @@ This web application is game where users can guess the name of an image of histo
 
 The frontend contains 4 main pages
   - [Register page](../client/html/register.html): This is where a user will register their account by inputting their chosen username, a secure password and their date of birth.
+  - 
   - [Login Page](../client/html/login.html): This is the page where the user will log into their account to play the game.
   - [Homepage](../client/html/homepage.html): This the page where all the games available to play are displayed and the leaderboard.
   - Game pages: There are 4 game page that cover the;
