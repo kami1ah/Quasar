@@ -2,7 +2,7 @@ async function displayLeaderboard() {
     const leaderboardContainer = document.querySelector("#leaderboard tbody");
     try {
 
-        const response = await fetch(`http://localhost:3000/stats/`)
+        const response = await fetch('/stats')
 
         if (!response.ok) {
             throw new Error("Failed to fetch leaderboard");
@@ -25,8 +25,6 @@ async function displayLeaderboard() {
             tc3.textContent = item.total_games; 
 
         });
-
-        leaderboardContainer.appendChild(table);
 
     } catch (err) {
         console.error("Error loading leaderboard:", err)
