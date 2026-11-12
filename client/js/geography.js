@@ -118,6 +118,7 @@ async function getAnswer(answer, hints, counter, description) {
 
 const hintBtn = document.getElementById("hintBtn");
 const hintCount = document.querySelector('#hintCount p');
+const pointsCount = document.querySelector('#pointCount p');
 let counterBtn = -1
 let hintCounter = 4
 hintBtn.addEventListener("click", (e) => {
@@ -132,6 +133,7 @@ hintBtn.addEventListener("click", (e) => {
  
     // console.log(counterBtn);
     hintCounter--
+    getHint(hints, counterBtn, hintCounter);
     const available = 500 - (4 - hintCounter) * 100;
     pointsCount.textContent = `Points: ${available}`;
 });
