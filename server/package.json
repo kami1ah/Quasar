@@ -2,12 +2,17 @@
    "scripts": {
     "dev": "nodemon server/index.js",
     "start": "node server/index.js",
-    "setup-db": "node database/setup.js"
+    "setup-db": "node database/setup.js",
+    "test": "jest --watchAll --detectOpenHandles --runInBand --verbose",
+    "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",
+    "integrationTests": "jest --testPathPattern=/integration/ --watchAll --detectOpenHandles --runInBand --verbose",
+    "coverage": "jest --coverage --testPathPattern=/unit/"
   },
   
   "devDependencies": {
     "jest": "^30.5.2",
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "supertest": "^6.3.3"
   },
   "dependencies": {
     "cors": "^2.8.6",
@@ -15,6 +20,10 @@
     "express": "^5.3.0",
     "pg": "^8.23.1",
     "bcrypt": "^5.1.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "./__tests__/integration/config.js"
+    ]
   }
-
 }

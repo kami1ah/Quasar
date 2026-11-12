@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="./homepage.html" class="btn btn-primary">Home</a>
+                        <a href="./homepage.html" class="btn custom-btn rounded-0">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,7 +31,6 @@
                             <li><a href="./historicalfigures.html?category=Figures">Historical figures</a></li>
                             <li><a href="./historicalmonuments.html?category=Monuments">Historical Monuments</a></li>
                             <li><a href="./geography.html?category=Geography">Geography</a></li>
-                            <li><a class="dropdown-item" href="./randomgame.html">Random game</a></li>
                         </ul>
                     </li>
                         <div class="position-absolute start-50 translate-middle-x">
@@ -43,7 +42,7 @@
                 </ul>
             </div>
         </div>
-        <button id="loginButt" type="button" class="btn btn-success">Log-in/register</button>
+        <button id="loginButt" type="button" class="btn custom-btn rounded-0">Login</button>
     </nav>
 
     <main>
@@ -62,7 +61,11 @@
 
         <form id="answerForm" class="w-100 text-center">
             <input type="text" id="answer" placeholder="Enter your answer">
-            <input type="submit" value="Submit">
+            <input type="submit" id="submit" value="Submit">
+<!-- 
+            <section id="answerForm" class="w-100 text-center">
+            <input type="text" >
+            <input type="submit" hidden /> -->
         </form>
         <br>
 
@@ -84,7 +87,7 @@
                 <div class="modal-body">
                     <div class="d-flex justify-content-center align-items-center gap-4">
 
-                        <button id="hintBtn" type="button" class="btn btn-primary">
+                        <button id="hintBtn" type="button" class="btn custom-btn">
                             Hint
                         </button>
                         <section id="pointCount">
@@ -102,7 +105,7 @@
         <br>
         <section id="nxtQuestion">
             <div class="d-flex justify-content-center align-items-center gap-4">
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn custom-btn">
                     Next Question
                 </button>
             </div>                
@@ -112,7 +115,7 @@
    
  
     
-    <footer class="card text-bg-light mb-3">
+    <footer class="card">
         <p id="about" class="fw-bold">About</p>
         <p class="fw-lighter">This is the about us section</p>
         <p id="contactUs" class="fw-bold">Contact Us</p>

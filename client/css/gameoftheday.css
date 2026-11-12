@@ -1,3 +1,35 @@
+body{
+    background-color: antiquewhite;
+    font-family: sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+.custom-btn{
+    background-color: orange;
+}
+
+.text{
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+}
+
+.nav-link{
+    background-color: orange;
+}
+li{
+    display: flex;
+    justify-content: center;
+}
+
+ol{
+    list-style: none;
+}
 
 #middle {
 clip-path: inset(0 50% 0 0);
@@ -5,10 +37,13 @@ clip-path: inset(0 50% 0 0);
 
 footer{
     display: block;
-    position: fixed;
     align-items: center;
-
+    background-color: blue;
+    width: 100%;
+    position:absolute !important;   
 }
+
+
 #about{
     text-align: center;
 }
