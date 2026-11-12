@@ -22,8 +22,8 @@ const path = require("path");
 
 app.use(express.static(path.join(__dirname + '../client')));
 
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '../client/html/homepage.html');
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/html/homepage.html"));
 });
 
 
