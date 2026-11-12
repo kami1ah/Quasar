@@ -41,10 +41,6 @@ let cat;
 async function getImage(category) {
     //const imgContainer = document.getElementById("middle");
     try {
-        if (category == 'Game of the day') {
-            const cat = array[Math.floor(Math.random() * array.length)];
-            cat = category
-        }
 
         const resp = await fetch(`/question/${category}`);
         // console.log(resp)
