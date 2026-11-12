@@ -7,7 +7,7 @@ const userRouter = require('./routers/user');
 const questionRouter = require('./routers/question');
 const statRouter = require('./routers/stat');
 const app = express()
-app.use(cors({origin: "https://quasar-zyww.onrender.com"}))
+app.use(cors())
 //app.use(logger)
 app.use(express.json())
 const path = require("path");
@@ -20,7 +20,7 @@ const path = require("path");
 //     })
 // })
 
-app.use(express.static(path.join(__dirname + '../client')));
+app.use(express.static(path.join(__dirname, "../client")));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/html/login.html"));

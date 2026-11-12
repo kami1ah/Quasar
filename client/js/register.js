@@ -15,7 +15,7 @@ registerForm.addEventListener("submit", async (event) => {
     const password = userPassword.value
     const age = userDate.value
 
-    const response = await fetch("https://quasar-zyww.onrender.com/users/register",{
+    const response = await fetch("/users/register",{
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({username,password,age})
