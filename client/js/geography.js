@@ -41,10 +41,6 @@ let cat;
 async function getImage(category) {
     //const imgContainer = document.getElementById("middle");
     try {
-        if (category == 'Game of the day') {
-            const cat = array[Math.floor(Math.random() * array.length)];
-            cat = category
-        }
 
         const resp = await fetch(`/question/${category}`);
         // console.log(resp)
@@ -190,6 +186,44 @@ nxtQuestion.addEventListener("click", async (e) => {
         nxtQuestion.disabled = true;
         return;
     }
+        let data;
+    let newid;
+    let attempts = 0;
+
+    do {
+        const resp = await fetch(`/question/${category}`);
+
+        if (!resp.ok) {
+            console.log("Error fetching question");
+            return;
+        }
+
+        data = await resp.json();
+        newid = data.id;
+        attempts++;
+
+    } while (id.includes(newid) && attempts < 20);
+
+    if (id.includes(newid)) {
+        console.log("No new questions available");
+        return;
+    }
+
+    console.log("New question");
+
+    extractImg(data);
+
+    counterBtn = -1;
+    hintCounter = 4;
+    counter = 0;
+    isCorrect = false;
+
+    hintCount.textContent = "Hints left: 5";
+    winAnswer.textContent = "";
+    knowledge.textContent = "";
+    pointsCount.textContent = "Points: 500";
+
+    document.getElementById("answer").value = "";
 })
 
 
