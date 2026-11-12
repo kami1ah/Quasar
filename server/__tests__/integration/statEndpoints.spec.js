@@ -188,7 +188,6 @@ describe('Stat endpoints', () => {
     describe('PATCH /:user_id', () => {
         it('should update an existing users points and number the number of total points', async () => {
             const userId = 1
-
             const points = {
                 category: "Geography",
                 points: 872
