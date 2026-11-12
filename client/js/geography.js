@@ -167,8 +167,8 @@ const nxtQuestion = document.getElementById("nxtQuestion");
 
 nxtQuestion.addEventListener("click", async (e) => {
     e.preventDefault();
-    
-    if (gameOver) {
+
+    if (gameWin) {
         window.location.assign("homepage.html");
         return;
     }
