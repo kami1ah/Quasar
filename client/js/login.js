@@ -21,7 +21,7 @@ inputForm.addEventListener("submit", async (event) => {
     if (response.status === 200){
         window.location.assign("homepage.html")
         localStorage.setItem("username", username)
-    } else if(response.status === 401){
+    } else{
         error.hidden = false
     }
 })

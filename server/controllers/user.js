@@ -30,6 +30,7 @@ async function login(req, res) {
     }
     try {
         const user = await User.getOneByUsername(data.username);
+        console.log('User returned:', user);
 
         if (!user) {
             return res.status(401).json({
@@ -38,6 +39,7 @@ async function login(req, res) {
         }
 
         const match = await bcrypt.compare(data.password, user.password);
+        console.log('Password match:', match);
 
         if (!match) {
             return res.status(401).json({
@@ -55,6 +57,8 @@ async function login(req, res) {
             throw new Error('User could not be authenticated');
         }
     } catch (err) {
+        console.log('Login error:', err);
+
         return res.status(500).json({
             error: 'Internal server error'
         });
