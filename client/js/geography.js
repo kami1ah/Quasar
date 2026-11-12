@@ -35,7 +35,7 @@ async function getImage(category) {
             cat = category
         }
 
-        const resp = await fetch(`http://localhost:3000/question/${category}`);
+        const resp = await fetch(`/question/${category}`);
         // console.log(resp)
         if (resp.ok) {
             const data = await resp.json();
@@ -163,7 +163,7 @@ nxtQuestion.addEventListener("click", async (e) => {
             
             const user = await getUser();
             const userId = user.user_id;
-            const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
+            const response = await fetch(`/stats/${userId}`, options);
             console.log(response)
 
     }
@@ -179,7 +179,7 @@ nxtQuestion.addEventListener("click", async (e) => {
     let attempts = 0;
 
     do {
-        const resp = await fetch(`http://localhost:3000/question/${category}`);
+        const resp = await fetch(`/question/${category}`);
 
         if (!resp.ok) {
             console.log("Error fetching question");
@@ -248,7 +248,7 @@ async function pointTotal(hintCounter, questionCounter) {
             const username = localStorage.getItem("username")
             const user = await getUser();
             const userId = user.user_id;
-            const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
+            const response = await fetch(`/stats/${userId}`, options);
             console.log(response)
 
     // }
@@ -267,7 +267,7 @@ async function pointTotal(hintCounter, questionCounter) {
 async function getUser() {
     //const imgContainer = document.getElementById("middle");
     try {
-        const resp = await fetch(`http://localhost:3000/users/${username}`);
+        const resp = await fetch(`/users/${username}`);
         // console.log(resp)
         if (resp.ok) {
             const data = await resp.json();
