@@ -160,7 +160,7 @@ nxtQuestion.addEventListener("click", async (e) => {
                     points: total
                 })
             };
-
+            
             const user = await getUser();
             const userId = user.user_id;
             const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
@@ -225,32 +225,60 @@ let total = 0;
 
 console.log(username);
 
-function pointTotal(hintCounter, questionCounter) {
+async function pointTotal(hintCounter, questionCounter) {
     const hintsUsed = 4 - hintCounter;
-    const questionPoints = 500 - (hintsUsed * 100);
 
-    if (questionPoints > 0) {
+    const questionPoints = 500 - (hintsUsed * 100);
+    const points2 = 0
+    if (questionPoints > 0){
         total += questionPoints;
+
+    if (questionCounter == 5) {
+            const options = {
+                method: "PATCH",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    category: category,
+                    points: total
+                })
+            };
+            const username = localStorage.getItem("username")
+            const user = await getUser(username);
+            const userId = user.user_id;
+            const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
+            console.log(response)
+
+    // }
+
         pointsCount.textContent = `Points: ${questionPoints}`;
     } else {
-        pointsCount.textContent = "Points: 0";
+        pointsCount.textContent = `Points: ${points}`;
     }
+    
 
     console.log(`Question ${questionCounter}: ${questionPoints} points`);
     console.log(`Total: ${total} points`);
 }
 
+
 async function getUser() {
+    //const imgContainer = document.getElementById("middle");
+    console.log(username + "blah")
     try {
         const resp = await fetch(`http://localhost:3000/users/${username}`);
-
+        // console.log(resp)
         if (resp.ok) {
             const data = await resp.json();
             return data;
+            console.log(data)
         } else {
-            throw new Error(`HTTP error: ${resp.status}`);
+            throw "Error: http status code = " + resp.status;
         }
     } catch (e) {
-        console.error(e);
+        // console.log(e);
     }
+}
 }
