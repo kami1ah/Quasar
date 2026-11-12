@@ -1,9 +1,30 @@
+body{
+    background-color: antiquewhite;
+    font-family: sans-serif;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+.custom-btn{
+    background-color: orange;
+}
+
+
 .text{
     text-align: center;
 }
 
 ul{
     list-style: none;
+}
+
+.nav-link{
+    background-color: orange;
+}
+li{
+    display: flex;
+    justify-content: center;
 }
 
 ol{

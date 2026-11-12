@@ -48,7 +48,7 @@ describe('login.html', () => {
   it('has a hyperlink where a user can register an account', () => {
     const link = document.querySelector('a[href]')
     expect(link).toBeTruthy()
-    expect(link.innerHTML).toContain('register here')
+    expect(link.innerHTML).toContain('Register here')
   })
   
 })
