@@ -2,7 +2,7 @@ async function displayLeaderboard() {
     const leaderboardContainer = document.querySelector("#leaderboard tbody");
     try {
 
-        const response = await fetch(`http://localhost:3000/stats/`)
+        const response = await fetch(`/stats/`)
 
         if (!response.ok) {
             throw new Error("Failed to fetch leaderboard");
