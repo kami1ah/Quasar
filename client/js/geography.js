@@ -268,7 +268,7 @@ async function getUser() {
     //const imgContainer = document.getElementById("middle");
     console.log(username + "blah")
     try {
-        const resp = await fetch(`http://localhost:3000/users/${username2}`);
+        const resp = await fetch(`http://localhost:3000/users/${username}`);
         // console.log(resp)
         if (resp.ok) {
             const data = await resp.json();
