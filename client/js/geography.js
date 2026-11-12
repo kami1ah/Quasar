@@ -25,9 +25,11 @@ const id = [];
 let newid;
 let questionCounter = 0;
 let isCorrect = false;
-    let total = 0;
+let total = 0;
+let gameWin = false
 
-    async function pointTotal(hintCounter, questionCounter) {
+    
+async function pointTotal(hintCounter, questionCounter) {
         const hintsUsed = 4 - hintCounter;
         const questionPoints = 500 - (hintsUsed * 100);
         if (questionPoints > 0) {
@@ -165,8 +167,14 @@ const nxtQuestion = document.getElementById("nxtQuestion");
 
 nxtQuestion.addEventListener("click", async (e) => {
     e.preventDefault();
+    
+    if (gameOver) {
+        window.location.assign("homepage.html");
+        return;
+    }
 
-    if (questionCounter == 5) {
+
+    if (questionCounter >= 5) {
         console.log(total);
             const options = {
                 method: "PATCH",
@@ -184,16 +192,16 @@ nxtQuestion.addEventListener("click", async (e) => {
             const userId = user.user_id;
             const response = await fetch(`/stats/${userId}`, options);
             console.log(response)
-
-    }
-
-    if (questionCounter >= 5) {
         winAnswer.textContent = `Game completed! You have finished all 5 questions. Total points are: ${total}`;
-        
-        nxtQuestion.disabled = true;
+        nxtQuestion.textContent = "Back to Home";
+        gameOver = true;
         return;
+
     }
-        let data;
+
+
+
+    let data;
     let newid;
     let attempts = 0;
 
