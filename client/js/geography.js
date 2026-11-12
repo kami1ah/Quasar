@@ -18,6 +18,17 @@ const id = [];
 let newid;
 let questionCounter = 0;
 let isCorrect = false;
+    let total = 0;
+
+    async function pointTotal(hintCounter, questionCounter) {
+        const hintsUsed = 4 - hintCounter;
+        const questionPoints = 500 - (hintsUsed * 100);
+        if (questionPoints > 0) {
+            total += questionPoints;
+        }
+        console.log(`Question ${questionCounter}: ${questionPoints} points`);
+        console.log(`Total: ${total} points`);
+    }
 
 if (preCategory == 'Game of the day') {
     category = array[Math.floor(Math.random() * array.length)];
