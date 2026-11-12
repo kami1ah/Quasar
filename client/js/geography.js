@@ -194,7 +194,7 @@ nxtQuestion.addEventListener("click", async (e) => {
             console.log(response)
         winAnswer.textContent = `Game completed! You have finished all 5 questions. Total points are: ${total}`;
         nxtQuestion.textContent = "Back to Home";
-        gameOver = true;
+        gameWin = true;
         return;
 
     }
