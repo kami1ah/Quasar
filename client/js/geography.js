@@ -221,7 +221,7 @@ const pointsCount = document.querySelector('#pointCount p');
 let points = 0;
 let total = 0;
 
-const username = localStorage.getItem("username")
+//const username = localStorage.getItem("username")
 
 console.log(username);
 
