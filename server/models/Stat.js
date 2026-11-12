@@ -38,6 +38,7 @@ constructor({ user_id, historical_figures_points, monuments_points, geography_po
         return new Stat(response.rows[0]);
     }
     static async updateUserRecord(user_id, category, points) {
+        if (category === "Figures") category = "historical_figures";
         const response = await db.query(
             `UPDATE user_game_stats
             SET ${category}_points = ${category}_points + $1,

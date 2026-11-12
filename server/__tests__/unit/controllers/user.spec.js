@@ -44,7 +44,7 @@ describe('User controller', () => {
                 id: 1,
                 username: 'user1',
                 password: hashedPassword,
-                age: 21
+                age: '1111-11-11'
             };            
             bcrypt.genSalt.mockResolvedValue('mock_salt');
             bcrypt.hash.mockResolvedValue(hashedPassword);
@@ -67,9 +67,30 @@ describe('User controller', () => {
             expect(mockStatus).toHaveBeenCalledWith(201);
             expect(mockSend).toHaveBeenCalledWith(mockUser);
         
+        })
+        it('should return a 400 error if registration fails', async () => {
+            // Arrange
+            const mockReq = {
+                body: {
+                    username: 'user1',
+                    password: 'password1',
+                    age: '1111-11-11'
+                }
+            };
 
+            User.create.mockRejectedValue(new Error('Unable to create user'));
+
+            // Act
+            await userController.register(mockReq, mockRes);
+
+            // Assert
+            expect(mockStatus).toHaveBeenCalledWith(400);
+            expect(mockJson).toHaveBeenCalledWith({
+                error: 'Unable to create user'
+            })
         })
     })
+    
 
     describe('login',() => {
         
