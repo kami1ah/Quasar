@@ -73,16 +73,18 @@ describe('User endpoints', () => {
     describe('POST /login', () => {
         it('should POST /login with a user successfully logging into the page with their user name and password', async () => {
             const user = {
-                username: "username1",
-                password: "password1"
+                username: "user3",
+                password: "pass3"
                 }
+
             const response = await request(api)
                 .post(`/users/login`)
                 .send(user)
             
             expect(response.status).toBe(200)
-            expect(response.body).toHaveProperty('username', 'username1')
-            expect(response.body).toHaveProperty('password', 'password1')
+            expect(response.body).toHaveProperty('success', true)
+            expect(response.body).toHaveProperty('message', 'User authenticated successfully')
+        })
 
         it('should return a 400 status code if the username OR password is not added', async () => {
             const user = {}
@@ -94,7 +96,7 @@ describe('User endpoints', () => {
             expect(response.body.error).toBe('Username and password are required')
             })
 
-        })
+        
 
         it('should return a 401 status code if the user is not correct', async () => {
             const user = {
@@ -121,7 +123,6 @@ describe('User endpoints', () => {
             expect(response.status).toBe(401)
             expect(response.body.error).toBe('Invalid username or password')
         })
-
     })
 
 })
