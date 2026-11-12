@@ -6,7 +6,7 @@
     "test": "jest --watchAll --detectOpenHandles --runInBand --verbose",
     "unitTests": "jest --testPathPatterns=/unit/ --watchAll --verbose",
     "integrationTests": "jest --testPathPatterns=/integration/ --watchAll --detectOpenHandles --runInBand --verbose",
-    "coverage": "jest --coverage --testPathPattern=/unit/"
+    "coverage": "jest --coverage --testPathPatterns=/unit/"
   },
   
   "devDependencies": {
