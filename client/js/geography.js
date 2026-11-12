@@ -132,7 +132,8 @@ hintBtn.addEventListener("click", (e) => {
  
     // console.log(counterBtn);
     hintCounter--
-    getHint(hints, counterBtn, hintCounter);
+    const available = 500 - (4 - hintCounter) * 100;
+    pointsCount.textContent = `Points: ${available}`;
 });
 
 
@@ -211,7 +212,7 @@ nxtQuestion.addEventListener("click", async (e) => {
     hintCount.textContent = "Hints left: 5";
     winAnswer.textContent = "";
     knowledge.textContent = "";
-    pointsCount.textContent = "Points: 0";
+    pointsCount.textContent = "Points: 500";
 
     document.getElementById("answer").value = "";
 });
