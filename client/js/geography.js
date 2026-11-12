@@ -172,12 +172,12 @@ nxtQuestion.addEventListener("click", async (e) => {
     }
 
     if (questionCounter >= 5) {
-        winAnswer.textContent = "Game completed! You have finished all 5 questions. Total points are: ${total}";
+        winAnswer.textContent = `Game completed! You have finished all 5 questions. Total points are: ${total}`;
         
         nxtQuestion.disabled = true;
         return;
     }
-}
+})
 
 
 async function getUser() {
