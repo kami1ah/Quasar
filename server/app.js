@@ -22,14 +22,16 @@ const path = require("path");
 
 app.use(express.static(path.join(__dirname, "../client")));
 
+app.use('/users', userRouter)
+app.use('/question',questionRouter)
+app.use('/stats',statRouter)
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/html/login.html"));
 });
 
 
-app.use('/users', userRouter)
-app.use('/question',questionRouter)
-app.use('/stats',statRouter)
+
 
 
 module.exports = app
