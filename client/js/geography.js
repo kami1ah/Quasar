@@ -172,86 +172,11 @@ nxtQuestion.addEventListener("click", async (e) => {
     }
 
     if (questionCounter >= 5) {
-        winAnswer.textContent = "Game completed! You have finished all 5 questions.";
+        winAnswer.textContent = "Game completed! You have finished all 5 questions. Total points are: ${total}";
+        
         nxtQuestion.disabled = true;
         return;
     }
-
-    let data;
-    let newid;
-    let attempts = 0;
-
-    do {
-        const resp = await fetch(`/question/${category}`);
-
-        if (!resp.ok) {
-            console.log("Error fetching question");
-            return;
-        }
-
-        data = await resp.json();
-        newid = data.id;
-        attempts++;
-
-    } while (id.includes(newid) && attempts < 20);
-
-    if (id.includes(newid)) {
-        console.log("No new questions available");
-        return;
-    }
-
-    console.log("New question");
-
-    extractImg(data);
-
-    counterBtn = -1;
-    hintCounter = 4;
-    counter = 0;
-    isCorrect = false;
-
-    hintCount.textContent = "Hints left: 5";
-    winAnswer.textContent = "";
-    knowledge.textContent = "";
-    pointsCount.textContent = "Points: 500";
-
-    document.getElementById("answer").value = "";
-});
-
-// point system
-
-const pointsCount = document.querySelector('#pointCount p');
-
-let points = 0;
-let total = 0;
-
-//const username = localStorage.getItem("username")
-
-console.log(username);
-
-async function pointTotal(hintCounter, questionCounter) {
-    const hintsUsed = 4 - hintCounter;
-
-    const questionPoints = 500 - (hintsUsed * 100);
-    const points2 = 0
-    if (questionPoints > 0){
-        total += questionPoints;
-
-    if (questionCounter == 5) {
-            const username = localStorage.getItem("username")
-            const user = await getUser(username);
-            const userId = user.user_id;
-            const response = await fetch(`/stats/${userId}`, options);
-            console.log(response)
-        }
-
-        pointsCount.textContent = `Points: ${questionPoints}`;
-    } else {
-        pointsCount.textContent = `Points: ${points}`;
-    }
-    
-
-    console.log(`Question ${questionCounter}: ${questionPoints} points`);
-    console.log(`Total: ${total} points`);
 }
 
 
