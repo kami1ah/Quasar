@@ -23,6 +23,7 @@ class User {
         }
         return new User(response.rows[0]);
     }
+    
     static async create(data) {
         if (!data.username) {
             throw new Error("Username is missing");

@@ -76,6 +76,7 @@ describe('User endpoints', () => {
                 username: "user3",
                 password: "pass3"
                 }
+
             const response = await request(api)
                 .post(`/users/login`)
                 .send(user)
@@ -83,26 +84,50 @@ describe('User endpoints', () => {
             expect(response.status).toBe(200)
             expect(response.body).toHaveProperty('success', true)
             expect(response.body).toHaveProperty('message', 'User authenticated successfully')
+        })
 
-        it('should return a 400 status code if the username OR password OR age is not added', async () => {
-            const notUser = {
-                username: 'user4',
+        it('should return a 400 status code if the username OR password is not added', async () => {
+            const user = {}
+            const response = await request(api)
+                .post(`/users/login`)
+                .send(user)
+
+            expect(response.status).toBe(400)
+            expect(response.body.error).toBe('Username and password are required')
+            })
+
+        
+
+        it('should return a 401 status code if the user is not correct', async () => {
+            const user = {
+                username: 'wrongusername',
                 password: 'pass4'
             }
             const response = await request(api)
                 .post(`/users/login`)
-                .send(notUser)
+                .send(user)
 
             expect(response.status).toBe(401)
-            expect(response.body.error).toBe('User could not be authenticated')
+            expect(response.body.error).toBe('Invalid username or password')
         })
+        
+        it('should return a 401 status code if the password is not correct', async () => {
+            const user = {
+                username: 'user4',
+                password: 'wrongpassword'
+            }
+            const response = await request(api)
+                .post(`/users/login`)
+                .send(user)
 
+            expect(response.status).toBe(401)
+            expect(response.body.error).toBe('Invalid username or password')
         })
     })
 
 })
 
-
+//Stats endpoints
 describe('Stat endpoints', () => {
     let api
 
@@ -123,7 +148,7 @@ describe('Stat endpoints', () => {
     describe('GET /', () => {
 
         it('should GET / with the all the users total points and total game played', async () => {
-            const response = await request(api).get('/')
+            const response = await request(api).get('/stats')
 
             expect(response.status).toBe(200)
             expect(response.body).toBeInstanceOf(Array)
@@ -147,7 +172,8 @@ describe('Stat endpoints', () => {
             expect(response.body).toHaveProperty('monuments_games', 363)
             expect(response.body).toHaveProperty('geography_games', 774)
             expect(response.body).toHaveProperty('total_games', 1760)
-        
+        })
+
         it('should return a 404 status code if the user Id is not found', async () => {
             const noUserIdOf = 999
             const response = await request(api).get(`/stats/${noUserIdOf}`)
@@ -155,49 +181,48 @@ describe('Stat endpoints', () => {
             expect(response.status).toBe(404)
             expect(response.body.error).toBe('Unable to locate user data.')
 
-        })
 
         })
     })
 
     describe('PATCH /:user_id', () => {
-        it('should update an existing users points and number of games played', async () => {
+        it('should update an existing users points and number the number of total points', async () => {
             const userId = 1
+            const points = {
+                category: "Geography",
+                points: 872
+            }
+            const addedPoints = {
+                category: "Geography",
+                points: 50
+            }
 
+        const updatePoints = {
+            category: points.category,
+            points: points.points + addedPoints.points
+        }
+        const response = await request(api)
+                .patch(`/stats/${userId}`)
+                .send(updatePoints)
+
+            expect(response.status).toBe(200)
+            expect(response.body).toHaveProperty('user_id', 1)
+            expect(response.body).toHaveProperty('geography_points', 1009)
+        })
+        it('should return 500 if the updates does not exist', async () => {
+            const notUserId = 999
             const updatePoints = {
                 category: "Geography",
                 points: 700
             }
             const response = await request(api)
-                .patch(`/stats/${userId}`)
+                .patch(`/stats/${notUserId}`)
                 .send(updatePoints)
 
-            expect(response.status).toBe(200)
-            expect(response.body).toHaveProperty('user_id', )
-            // expect(response.body).toHaveProperty('"geography_points": 787')
-            // expect(response.body).toHaveProperty('monuments_points')
-            // expect(response.body).toHaveProperty('geography_points')
-            // expect(response.body).toHaveProperty('total_points')
-            // expect(response.body).toHaveProperty('historical_figures_games')
-            // expect(response.body).toHaveProperty('monuments_games')
-            // expect(response.body).toHaveProperty('geography_games')
-            // expect(response.body).toHaveProperty('total_games')
-            expect(response.body).toHaveProperty('geography', 700)
-        })
-        it('should return 500 if the updates does not exist', async () => {
-                    const notUserId = 999
-                    const updatePoints = {
-                        category: "Geography",
-                        points: 700
-                    }
-                    const response = await request(api)
-                        .patch(`/stats/${notUserId}`)
-                        .send(updatePoints)
-
-                    expect(response.status).toBe(500)
-                    expect(response.body.error).toBe('Unable to update user data.')
-                })
+            expect(response.status).toBe(500)
+            expect(response.body.error).toBe('Unable to update user data.')
             })
+        })
 
     
 })
