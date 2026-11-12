@@ -22,10 +22,28 @@ async function register (req,res) {
 
 async function login(req, res) {
     const data = req.body;
+
+    if (!data.username || !data.password){
+        return res.status(400).json({
+            error: 'Username and password are required'
+        })
+    }
     try {
         const user = await User.getOneByUsername(data.username);
-        if(!user) { throw new Error('No user with this username') }
+
+        if (!user) {
+            return res.status(401).json({
+                error: 'Invalid username or password'
+            });
+        }
+
         const match = await bcrypt.compare(data.password, user.password);
+
+        if (!match) {
+            return res.status(401).json({
+                error: 'Invalid username or password'
+            });
+        }
 
         if (match) {
             res.status(200).json({
@@ -37,7 +55,9 @@ async function login(req, res) {
             throw new Error('User could not be authenticated');
         }
     } catch (err) {
-        res.status(401).json({ error: err.message });
+        return res.status(500).json({
+            error: 'Internal server error'
+        });
     }
 }
 
