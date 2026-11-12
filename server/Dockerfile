@@ -2,7 +2,6 @@ FROM node:22-slim
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
-COPY server/ ./server/
-COPY client/ ./client/
+COPY . .
 ENV PORT=3000
 CMD ["node", "index.js"]
