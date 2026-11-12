@@ -10,14 +10,21 @@ const app = express()
 app.use(cors())
 //app.use(logger)
 app.use(express.json())
+const path = require("path");
 
 //app.use('/router', gameRouter)
 
+// app.get("/", (req, res) => {
+//     res.json({
+//         name: "Educational-image-game",
+//     })
+// })
+
+app.use(express.static(path.join(__dirname, '../client')));
+
 app.get("/", (req, res) => {
-    res.json({
-        name: "Educational-image-game",
-    })
-})
+    res.redirect("/html/login.html");
+});
 
 
 app.use('/users', userRouter)

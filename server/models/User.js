@@ -24,12 +24,22 @@ class User {
         return new User(response.rows[0]);
     }
     static async create(data) {
-        const { username, password, age } = data;
-        let response = await db.query("INSERT INTO user_account (username, password,age) VALUES ($1, $2,$3) RETURNING user_id;",
-            [username, password,age]);
-        const newId = response.rows[0].user_id;
-        const newUser = await User.getOneById(newId);
-        return newUser;
+        if (!data.username) {
+            throw new Error("Username is missing");
+        }
+
+        if (!data.password) {
+            throw new Error("Password is missing");
+        }
+        if (!data.age) {
+            throw new Error("Age is missing");
+        }
+        const response = await db.query(
+            "INSERT INTO user_account (username, password,age) VALUES ($1, $2,$3) RETURNING *;",
+            [data.username, data.password, data.age]
+        );
+
+        return new User(response.rows[0]);
     }
 }
 

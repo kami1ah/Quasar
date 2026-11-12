@@ -69,9 +69,9 @@ Quasar/
 │   ├── app.js
 │   ├── index.js
 │   ├── README.md
+│   ├── Dockerfile
 │   └── package.json
 │
-├── Dockerfile
 └── README.md
 ```
 

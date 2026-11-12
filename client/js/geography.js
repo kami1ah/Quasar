@@ -246,7 +246,7 @@ async function pointTotal(hintCounter, questionCounter) {
                 })
             };
             const username = localStorage.getItem("username")
-            const user = await getUser();
+            const user = await getUser(username);
             const userId = user.user_id;
             const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
             console.log(response)
@@ -266,6 +266,7 @@ async function pointTotal(hintCounter, questionCounter) {
 
 async function getUser() {
     //const imgContainer = document.getElementById("middle");
+    console.log(username + "blah")
     try {
         const resp = await fetch(`http://localhost:3000/users/${username}`);
         // console.log(resp)

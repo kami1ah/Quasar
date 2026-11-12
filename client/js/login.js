@@ -12,7 +12,6 @@ inputForm.addEventListener("submit", async (event) => {
     event.preventDefault()
     const username = userUsername.value
     const password = userPassword.value
-    
 
     const response = await fetch("http://localhost:3000/users/login",{
         method: "POST",
