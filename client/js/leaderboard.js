@@ -2,7 +2,7 @@ async function displayLeaderboard() {
     const leaderboardContainer = document.querySelector("#leaderboard tbody");
     try {
 
-        const response = await fetch(`https://quasar-api.onrender.com/stats/`)
+        const response = await fetch(`https://quasar-zyww.onrender.com/stats/`)
 
         if (!response.ok) {
             throw new Error("Failed to fetch leaderboard");
