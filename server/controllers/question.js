@@ -7,10 +7,13 @@ const getRandomByCategory = async (req, res) => {
 
         const question = await Question.getRandomByCategory(category);
         const hints = await Hint.getByQuestionId(question.id);
-        res.status(200).json({...question,hints: hints});
+
+        res.status(200).json({ ...question, hints: hints });
 
     } catch (error) {
-        res.status(404).json({ error: error.message });
+        res.status(404).json({
+            error: 'Unable to locate question.'
+        });
     }
 };
 

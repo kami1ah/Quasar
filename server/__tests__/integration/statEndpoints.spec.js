@@ -226,3 +226,53 @@ describe('Stat endpoints', () => {
 
     
 })
+
+describe('Question endpoints', () => {
+    let api
+
+    beforeEach(async () => {
+        await resetTestDB()
+    })
+
+    beforeAll(() => {
+        api = app.listen(4000)
+    })
+
+    afterAll((done) => {
+        api.close(done)
+    })
+
+    describe('GET /:category', () => {
+
+        it('should return a random question from the requested category, including its hints', async () => {
+            const category = 'category1'
+
+            const response = await request(api)
+                .get(`/question/${category}`)
+
+            expect(response.status).toBe(200)
+
+            // Check question properties
+            expect(response.body).toHaveProperty('id')
+            expect(response.body).toHaveProperty('image_url')
+            expect(response.body).toHaveProperty('answer')
+            expect(response.body).toHaveProperty('category', category)
+            expect(response.body).toHaveProperty('description')
+
+            // Check hints
+            expect(response.body).toHaveProperty('hints')
+            expect(response.body.hints).toBeInstanceOf(Array)
+        })
+
+        it('should return a 404 status code if no questions exist for the requested category', async () => {
+            const category = 'nonexistent_category'
+
+            const response = await request(api)
+                .get(`/question/${category}`)
+
+            expect(response.status).toBe(404)
+            expect(response.body).toHaveProperty('error', 'Unable to locate question.')
+        })
+
+    })
+})
