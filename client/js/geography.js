@@ -8,6 +8,13 @@ const username = localStorage.getItem("username")
 
 const array = ['Figures', 'Monuments', 'Geography'];
 
+const login = document.getElementById("loginButt")
+
+
+login.addEventListener("click", (event) => {
+    window.location.assign("login.html")
+})
+
 // console.log(preCategory);
 
 let category;
@@ -18,6 +25,17 @@ const id = [];
 let newid;
 let questionCounter = 0;
 let isCorrect = false;
+    let total = 0;
+
+    async function pointTotal(hintCounter, questionCounter) {
+        const hintsUsed = 4 - hintCounter;
+        const questionPoints = 500 - (hintsUsed * 100);
+        if (questionPoints > 0) {
+            total += questionPoints;
+        }
+        console.log(`Question ${questionCounter}: ${questionPoints} points`);
+        console.log(`Total: ${total} points`);
+    }
 
 if (preCategory == 'Game of the day') {
     category = array[Math.floor(Math.random() * array.length)];
@@ -30,12 +48,8 @@ let cat;
 async function getImage(category) {
     //const imgContainer = document.getElementById("middle");
     try {
-        if (category == 'Game of the day') {
-            const ca = array[Math.floor(Math.random() * array.length)];
-            cat = category
-        }
 
-        const resp = await fetch(`http://localhost:3000/question/${category}`);
+        const resp = await fetch(`/question/${category}`);
         // console.log(resp)
         if (resp.ok) {
             const data = await resp.json();
@@ -89,6 +103,7 @@ async function getAnswer(answer, hints, counter, description) {
     //const imgContainer = document.getElementById("middle");
     if (counter == 5) {
         window.location.href = "./homepage.html";
+        return
     }
 
 
@@ -117,20 +132,24 @@ async function getAnswer(answer, hints, counter, description) {
 
 const hintBtn = document.getElementById("hintBtn");
 const hintCount = document.querySelector('#hintCount p');
+const pointsCount = document.querySelector('#pointCount p');
 let counterBtn = -1
 let hintCounter = 4
 hintBtn.addEventListener("click", (e) => {
 
     e.preventDefault();
-    counterBtn++
-    if (counterBtn == 4) {
+        if (counterBtn >= hints.length -1) {
         winAnswer.textContent = 'Try the next question or Return to homepage to start again.';
-        hintCounter--
-        getHint(hints, counterBtn, hintCounter);
-    }
+        return
+        }
+    counterBtn++
+
+ 
     // console.log(counterBtn);
     hintCounter--
     getHint(hints, counterBtn, hintCounter);
+    const available = 500 - (4 - hintCounter) * 100;
+    pointsCount.textContent = `Points: ${available}`;
 });
 
 
@@ -163,23 +182,23 @@ nxtQuestion.addEventListener("click", async (e) => {
             
             const user = await getUser();
             const userId = user.user_id;
-            const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
+            const response = await fetch(`/stats/${userId}`, options);
             console.log(response)
 
     }
 
     if (questionCounter >= 5) {
-        winAnswer.textContent = "Game completed! You have finished all 5 questions.";
+        winAnswer.textContent = `Game completed! You have finished all 5 questions. Total points are: ${total}`;
+        
         nxtQuestion.disabled = true;
         return;
     }
-
-    let data;
+        let data;
     let newid;
     let attempts = 0;
 
     do {
-        const resp = await fetch(`http://localhost:3000/question/${category}`);
+        const resp = await fetch(`/question/${category}`);
 
         if (!resp.ok) {
             console.log("Error fetching question");
@@ -209,66 +228,17 @@ nxtQuestion.addEventListener("click", async (e) => {
     hintCount.textContent = "Hints left: 5";
     winAnswer.textContent = "";
     knowledge.textContent = "";
-    pointsCount.textContent = "Points: 0";
+    pointsCount.textContent = "Points: 500";
 
     document.getElementById("answer").value = "";
-});
-
-// point system
-
-const pointsCount = document.querySelector('#pointCount p');
-
-let points = 0;
-let total = 0;
-
-//const username = localStorage.getItem("username")
-
-console.log(username);
-
-async function pointTotal(hintCounter, questionCounter) {
-    const hintsUsed = 4 - hintCounter;
-
-    const questionPoints = 500 - (hintsUsed * 100);
-    const points2 = 0
-    if (questionPoints > 0){
-        total += questionPoints;
-
-    if (questionCounter == 5) {
-            const options = {
-                method: "PATCH",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    category: category,
-                    points: total
-                })
-            };
-            const username = localStorage.getItem("username")
-            const user = await getUser(username);
-            const userId = user.user_id;
-            const response = await fetch(`http://localhost:3000/stats/${userId}`, options);
-            console.log(response)
-
-    // }
-
-        pointsCount.textContent = `Points: ${questionPoints}`;
-    } else {
-        pointsCount.textContent = `Points: ${points}`;
-    }
-    
-
-    console.log(`Question ${questionCounter}: ${questionPoints} points`);
-    console.log(`Total: ${total} points`);
-}
+})
 
 
 async function getUser() {
     //const imgContainer = document.getElementById("middle");
     console.log(username + "blah")
     try {
-        const resp = await fetch(`http://localhost:3000/users/${username}`);
+        const resp = await fetch(`/users/${username}`);
         // console.log(resp)
         if (resp.ok) {
             const data = await resp.json();
@@ -281,4 +251,4 @@ async function getUser() {
         // console.log(e);
     }
 }
-}
+
