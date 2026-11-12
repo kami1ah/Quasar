@@ -8,6 +8,13 @@ const username = localStorage.getItem("username")
 
 const array = ['Figures', 'Monuments', 'Geography'];
 
+const login = document.getElementById("loginButt")
+
+
+login.addEventListener("click", (event) => {
+    window.location.assign("login.html")
+})
+
 // console.log(preCategory);
 
 let category;
