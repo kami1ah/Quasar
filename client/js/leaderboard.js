@@ -1,24 +1,29 @@
 async function displayLeaderboard() {
-    const leaderboardContainer = document.getElementById("leaderboard");
+    const leaderboardContainer = document.querySelector("#leaderboard tbody");
     try {
-        const response = await fetch("http://localhost:3000/api/leaderboard");
+
+        const response = await fetch(`http://localhost:3000/stats/`)
 
         if (!response.ok) {
             throw new Error("Failed to fetch leaderboard");
         }
         
         const data = await response.json();
-        const table = document.createElement("table");
+        console.log(data);
+        leaderboardContainer.innerHTML = "";
         
         data.forEach((item, index) => {
-            const tr = table.insertRow();
+            const tr = leaderboardContainer.insertRow();
             const tc0 = tr.insertCell();
             const tc1 = tr.insertCell();
             const tc2 = tr.insertCell();
+            const tc3 = tr.insertCell();
             
-            tc1.textContent = index + 1; 
-            tc1.textContent = item.name;  
-            tc2.textContent = item.score; 
+            tc0.textContent = index + 1; 
+            tc1.textContent = item.username;  
+            tc2.textContent = item.total_points; 
+            tc3.textContent = item.total_games; 
+
         });
 
         leaderboardContainer.appendChild(table);
@@ -27,4 +32,7 @@ async function displayLeaderboard() {
         console.error("Error loading leaderboard:", err)
     }
 }
+
+displayLeaderboard();
+
 
