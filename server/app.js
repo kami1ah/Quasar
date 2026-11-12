@@ -14,11 +14,11 @@ const path = require("path");
 
 //app.use('/router', gameRouter)
 
-app.get("/", (req, res) => {
-    res.json({
-        name: "Educational-image-game",
-    })
-})
+// app.get("/", (req, res) => {
+//     res.json({
+//         name: "Educational-image-game",
+//     })
+// })
 
 app.use(express.static (path.join(__dirname + '../client')));
 
